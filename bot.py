@@ -180,6 +180,10 @@ def main():
     if not BOT_TOKEN or CHANNEL_ID == 0:
         raise ValueError("Error: Render Environment Variables me BOT_TOKEN aur CHANNEL_ID set karein!")
 
+    # Python 3.14 Event Loop Fix
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     threading.Thread(target=run_web, daemon=True).start()
 
     app = Application.builder().token(BOT_TOKEN).build()
